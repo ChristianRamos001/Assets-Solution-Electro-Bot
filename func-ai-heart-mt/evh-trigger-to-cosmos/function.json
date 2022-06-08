@@ -1,0 +1,27 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "type": "eventHubTrigger",
+      "name": "eventMobile",
+      "direction": "in",
+      "eventHubName": "ecg-data-user-mobile",
+      "connection": "connectionEVH_ECGDATA",
+      "cardinality": "one",
+      "consumerGroup": "$Default",
+      "dataType": "binary"
+    },
+
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "cosmosECG",
+      "connectionStringSetting": "connectionCosmos_HEARTMT",
+      "databaseName": "cosmos-heart-monitoring",
+      "collectionName": "Records-ECG",
+      "createIfNotExists": "true",
+      "leaseCollectionName": "leases",
+      "createLeaseCollectionIfNotExists": true
+    }
+  ]
+}
